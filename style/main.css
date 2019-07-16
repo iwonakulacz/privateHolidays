@@ -112,7 +112,7 @@ button {
       -ms-flex-align: center;
           align-items: center;
   height: 100vh;
-  background: url("/img/boat.jpg") no-repeat;
+  background: url("../img/boat.jpg") no-repeat;
   background-position-x: 50%;
   background-size: cover;
   padding-top: 60px;
@@ -184,16 +184,16 @@ button {
 }
 
 .ideas .boxes .box1 {
-  background: url("/img/box1.jpg") no-repeat;
+  background: url("../img/box1.jpg") no-repeat;
   background-size: cover;
 }
 
 .ideas .boxes .box2 {
-  background: url("/img/box2.jpg") no-repeat;
+  background: url("../img/box2.jpg") no-repeat;
 }
 
 .ideas .boxes .box3 {
-  background: url("/img/box3.jpg") no-repeat;
+  background: url("../img/box3.jpg") no-repeat;
 }
 
 .locations {
@@ -292,17 +292,17 @@ button {
 }
 
 .reasons .item .circle.circle1::after {
-  background: url("/img/icon1.png") no-repeat;
+  background: url("../img/icon1.png") no-repeat;
   background-position: center;
 }
 
 .reasons .item .circle.circle2::after {
-  background: url("/img/icon2.png") no-repeat;
+  background: url("../img/icon2.png") no-repeat;
   background-position: center;
 }
 
 .reasons .item .circle.circle3::after {
-  background: url("/img/icon3.png") no-repeat;
+  background: url("../img/icon3.png") no-repeat;
   background-position: center;
 }
 

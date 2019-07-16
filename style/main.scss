@@ -128,7 +128,7 @@ button{
     display: flex;
     align-items: center;
     height: 100vh;
-    background: url('/img/boat.jpg') no-repeat;
+    background: url('../img/boat.jpg') no-repeat;
     background-position-x: 50%;
     background-size: cover;
     padding-top: 60px;
@@ -182,15 +182,15 @@ button{
             }
         }
         .box1{
-            background: url('/img/box1.jpg') no-repeat;
+            background: url('../img/box1.jpg') no-repeat;
             background-size: cover;
 
         }
         .box2{
-            background: url('/img/box2.jpg') no-repeat;
+            background: url('../img/box2.jpg') no-repeat;
         }
         .box3{
-            background: url('/img/box3.jpg') no-repeat;
+            background: url('../img/box3.jpg') no-repeat;
         }
     }
 }
@@ -258,16 +258,16 @@ button{
 
             }
             &.circle1::after{
-                background: url('/img/icon1.png') no-repeat;
+                background: url('../img/icon1.png') no-repeat;
                 background-position: center;
 
             }
             &.circle2::after{
-                background: url('/img/icon2.png') no-repeat;
+                background: url('../img/icon2.png') no-repeat;
                 background-position: center;
             }
             &.circle3::after{
-                background: url('/img/icon3.png') no-repeat;
+                background: url('../img/icon3.png') no-repeat;
                 background-position: center;
             }
         }
