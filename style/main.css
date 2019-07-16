@@ -134,7 +134,18 @@ button {
   color: #171d1c;
   text-align: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.ideas .title::after {
+  position: absolute;
+  content: '';
+  background: url("../img/separator.png") no-repeat;
+  width: 78px;
+  height: 10px;
+  bottom: -20px;
+  left: calc(50% - 39px);
 }
 
 .ideas .boxes {
@@ -205,12 +216,23 @@ button {
   color: #171d1c;
   text-align: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.locations .title::after {
+  position: absolute;
+  content: '';
+  background: url("../img/separator.png") no-repeat;
+  width: 78px;
+  height: 10px;
+  bottom: -20px;
+  left: calc(50% - 39px);
 }
 
 .locations .boxes .box {
   background: #ffffff;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
   border-radius: 7px;
   max-width: 278px;
 }
@@ -263,7 +285,18 @@ button {
   color: #171d1c;
   text-align: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.reasons .title::after {
+  position: absolute;
+  content: '';
+  background: url("../img/separator.png") no-repeat;
+  width: 78px;
+  height: 10px;
+  bottom: -20px;
+  left: calc(50% - 39px);
 }
 
 .reasons .item {
@@ -324,7 +357,22 @@ button {
   color: #171d1c;
   text-align: center;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.contact .title::after {
+  position: absolute;
+  content: '';
+  background: url("../img/separator.png") no-repeat;
+  width: 78px;
+  height: 10px;
+  bottom: -20px;
+  left: calc(50% - 39px);
+}
+
+.contact .title::after {
+  position: initial;
 }
 
 .contact .contactBox {
@@ -351,7 +399,7 @@ button {
   color: #ffffff;
   font-size: 12px;
   text-align: right;
-  padding: 20px;
+  padding: 30px 20px;
   line-height: 2em;
 }
 
