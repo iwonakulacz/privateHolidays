@@ -21,17 +21,8 @@ $marginBottom: 20px;
     color: color(dark);
     text-align: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     position: relative;
-    &::after{
-        position: absolute;
-        content: '';
-        background: url('../img/separator.png') no-repeat;
-        width: 78px;
-        height: 10px;
-        bottom: -20px;
-        left: calc(50% - 39px);
-    }
 }
 
 @mixin button--red {
@@ -77,6 +68,7 @@ button{
     position: fixed;
     width: 100%;
     z-index:2;
+    box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
     .mobileLogo{
         font-family: 'Merienda', cursive;
         text-decoration: none;
@@ -93,6 +85,7 @@ button{
         position: relative;
         transition: .2s;
         margin: auto 15px auto auto;
+        overflow: hidden;
         .line1,
         .line2,
         .line3{
@@ -101,7 +94,7 @@ button{
             width: 100%;
             height: 2px;
             background: color(gray);
-            transition: .2s;
+            transition: transform .2s ease-in;
         }
         .line1{
             top: 0;
@@ -112,6 +105,18 @@ button{
         .line3{
             bottom: 0;
         }
+        &.active{
+            .line1{
+                transform: translate3d(0,7px,0) rotate(45deg);
+            }
+            .line2{
+                transform: translateX(100%);
+            }
+            .line3{
+                transform: translate3d(0,-7px,0) rotate(-45deg);
+            }
+        }
+
     }
     .nav__list{
         width: 100%;
@@ -123,7 +128,12 @@ button{
         .item{
             text-transform: uppercase;
             list-style: none;
-            margin: 15px;
+            border-bottom: 1px dotted #10101029;
+            margin: 0 15px;
+            padding: 10px;
+            &:last-child{
+                border:none;
+            }
             a{
                 text-decoration: none;
                 color: color(gray);
@@ -146,6 +156,7 @@ button{
         font-size: 56px;
         color: #ffffff;
         text-align: center;
+        padding: 0 20px;
     }
 }
 
@@ -155,7 +166,7 @@ button{
 
 .ideas{
     @include bigWrapper();
-    margin-top: 50px;
+    margin-top: 40px;
     .title{
         @include title();
     }
@@ -295,12 +306,9 @@ button{
     background: #ffffff;
     .title{
         @include title();
-        &::after{
-            position: initial;
-        }
     }
     .contactBox{
-        padding: 30px;
+        padding: 60px 30px;
     }
     .button--red{
         @include button--red();
