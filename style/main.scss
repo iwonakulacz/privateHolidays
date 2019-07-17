@@ -315,6 +315,44 @@ button{
         display: block;
         margin: 15px auto;
     }
+    .form__label{
+        position: relative;
+        font-size: 14px;
+        input{
+            width: 100%;
+            border:none;
+            border-bottom: 1px solid #999999;
+            margin-bottom: 20px;
+            padding: 10px 5px;
+            transition: .1s ease-in-out;
+            &:focus,
+            &:not(:placeholder-shown) {
+                ~ .form__groupLabel{
+                    transform: translateY(0);
+                    font-size: 10px;
+                    top: -12px;
+                    color: color(dark);
+                }
+            }
+            &:focus{
+                outline: none;
+                border-bottom: 1px solid color(gray);
+            }
+            &:not(:placeholder-shown):invalid{
+                border-bottom: 1px solid color(red);
+            }
+        }
+        .form__groupLabel{
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            transition: 0.2s;
+            color: #999999;
+
+        }
+    }
+    
 }
 
 .footer{

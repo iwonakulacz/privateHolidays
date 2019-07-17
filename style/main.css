@@ -377,6 +377,49 @@ button {
   margin: 15px auto;
 }
 
+.contact .form__label {
+  position: relative;
+  font-size: 14px;
+}
+
+.contact .form__label input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #999999;
+  margin-bottom: 20px;
+  padding: 10px 5px;
+  -webkit-transition: .1s ease-in-out;
+  transition: .1s ease-in-out;
+}
+
+.contact .form__label input:focus ~ .form__groupLabel, .contact .form__label input:not(:placeholder-shown) ~ .form__groupLabel {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  font-size: 10px;
+  top: -12px;
+  color: #171d1c;
+}
+
+.contact .form__label input:focus {
+  outline: none;
+  border-bottom: 1px solid #454851;
+}
+
+.contact .form__label input:not(:placeholder-shown):invalid {
+  border-bottom: 1px solid #f31131;
+}
+
+.contact .form__label .form__groupLabel {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  color: #999999;
+}
+
 .footer {
   background: #171d1c;
   color: #ffffff;
