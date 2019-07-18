@@ -149,6 +149,7 @@ button {
   color: #ffffff;
   text-align: center;
   padding: 0 20px;
+  width: 100%;
 }
 
 .ideas {
@@ -253,6 +254,8 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .locations .boxes .box {
@@ -260,6 +263,23 @@ button {
   margin: 0 10px 20px 10px;
   border-radius: 7px;
   max-width: 278px;
+  position: relative;
+}
+
+@media only screen and (min-width: 991px) {
+  .locations .boxes .box {
+    width: 50%;
+    max-width: unset;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
 }
 
 .locations .boxes .box .img {
@@ -272,8 +292,14 @@ button {
   width: 100%;
 }
 
+@media only screen and (min-width: 991px) {
+  .locations .boxes .box .img img {
+    width: 278px;
+  }
+}
+
 .locations .boxes .box .content {
-  padding: 20px;
+  padding: 20px 20px 70px 20px;
 }
 
 .locations .boxes .box .content .name {
@@ -288,6 +314,15 @@ button {
   font-size: 14px;
 }
 
+.locations .boxes .box .content .details {
+  color: #454851;
+  font-size: 13px;
+}
+
+.locations .boxes .box .content .details span {
+  margin-right: 10px;
+}
+
 .locations .boxes .box .content .button--red {
   display: inline-block;
   margin-top: 15px;
@@ -299,6 +334,9 @@ button {
   color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
 
 .reasons {
