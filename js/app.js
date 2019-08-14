@@ -4,13 +4,12 @@ function toggleMenu(e){
     const show = hamburger.getAttribute('aria-expanded');
     if(show === 'true'){
         hamburger.setAttribute('aria-expanded', false);
-        $('.nav__list').slideUp();
+        $('.nav__list').removeClass('active');
         $('.hamburger').removeClass('active');
-
     }
     else{
         hamburger.setAttribute('aria-expanded', true);
-        $('.nav__list').slideDown();
+        $('.nav__list').addClass('active');
         $('.hamburger').addClass('active');
     }
 }

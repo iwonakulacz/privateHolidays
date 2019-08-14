@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
@@ -6,7 +8,7 @@
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: #ecf0f1;
 }
 
@@ -21,6 +23,15 @@ button {
 
 .nav {
   background: #ffffff;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+  -webkit-box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
+          box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
+}
+
+.nav .wrapper {
+  max-width: 1200px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -33,15 +44,11 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  position: fixed;
-  width: 100%;
-  z-index: 2;
-  -webkit-box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
-          box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
+  margin: auto;
 }
 
 .nav .mobileLogo {
-  font-family: 'Merienda', cursive;
+  font-family: "Merienda", cursive;
   text-decoration: none;
   padding: 15px;
   display: inline-block;
@@ -50,13 +57,19 @@ button {
   font-weight: bold;
 }
 
+@media only screen and (min-width: 991px) {
+  .nav .mobileLogo {
+    padding-left: 0;
+  }
+}
+
 .nav .hamburger {
   background: transparent;
   width: 22px;
   height: 16px;
   position: relative;
-  -webkit-transition: .2s;
-  transition: .2s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   margin: auto 15px auto auto;
   overflow: hidden;
 }
@@ -69,10 +82,10 @@ button {
   width: 100%;
   height: 2px;
   background: #454851;
-  -webkit-transition: -webkit-transform .2s ease-in;
-  transition: -webkit-transform .2s ease-in;
-  transition: transform .2s ease-in;
-  transition: transform .2s ease-in, -webkit-transform .2s ease-in;
+  -webkit-transition: -webkit-transform 0.2s ease-in;
+  transition: -webkit-transform 0.2s ease-in;
+  transition: transform 0.2s ease-in;
+  transition: transform 0.2s ease-in, -webkit-transform 0.2s ease-in;
 }
 
 .nav .hamburger .line1 {
@@ -102,14 +115,23 @@ button {
           transform: translate3d(0, -7px, 0) rotate(-45deg);
 }
 
+@media only screen and (min-width: 991px) {
+  .nav .hamburger {
+    display: none;
+  }
+}
+
 .nav .nav__list {
   width: 100%;
   padding: 5px 0;
   text-align: center;
+  display: none;
 }
 
-.nav .nav__list.hide {
-  display: none;
+.nav .nav__list.active {
+  display: block;
+  -webkit-animation: appear 0.5s ease;
+          animation: appear 0.5s ease;
 }
 
 .nav .nav__list .item {
@@ -127,6 +149,25 @@ button {
 .nav .nav__list .item a {
   text-decoration: none;
   color: #454851;
+}
+
+@media only screen and (min-width: 991px) {
+  .nav .nav__list {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .nav .nav__list .item {
+    border: none;
+  }
+  .nav .nav__list .item:last-child {
+    margin-right: 0;
+    padding-right: 0;
+  }
 }
 
 .header {
@@ -211,7 +252,7 @@ button {
   height: calc(100% - 20px);
   border: 1px solid #cccccc;
   margin: 10px;
-  content: '';
+  content: "";
   top: 0;
   left: 0;
   display: block;
@@ -244,62 +285,60 @@ button {
 }
 
 .locations .boxes {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
   max-width: 1200px;
+  row-gap: 40px;
+  margin-bottom: 60px;
   margin: auto;
 }
 
+@media only screen and (min-width: 1100px) {
+  .locations .boxes {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
 .locations .boxes .box {
+  margin: 0 auto;
   background: #ffffff;
-  margin: 0 10px 20px 10px;
   border-radius: 7px;
   max-width: 278px;
   position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
 }
 
-@media only screen and (min-width: 991px) {
+@media only screen and (min-width: 600px) {
   .locations .boxes .box {
-    width: 50%;
-    max-width: unset;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    max-width: 560px;
   }
 }
 
 .locations .boxes .box .img {
-  max-width: 278px;
+  background: url("../img/p2.jpg") no-repeat;
+  background-size: cover;
+  height: 200px;
 }
 
-.locations .boxes .box .img img {
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-  width: 100%;
-}
-
-@media only screen and (min-width: 991px) {
-  .locations .boxes .box .img img {
-    width: 278px;
+@media only screen and (min-width: 600px) {
+  .locations .boxes .box .img {
+    height: 100%;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
   }
 }
 
 .locations .boxes .box .content {
   padding: 20px 20px 70px 20px;
+  position: relative;
 }
 
 .locations .boxes .box .content .name {
@@ -384,7 +423,7 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  content: '';
+  content: "";
 }
 
 .reasons .item .circle.circle1::after {
@@ -417,9 +456,8 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  margin: auto;
+  max-width: 1200px;
 }
 
 .contact .wrapper .title {
@@ -464,8 +502,8 @@ button {
   border-bottom: 1px solid #999999;
   margin-bottom: 20px;
   padding: 10px 5px;
-  -webkit-transition: .1s ease-in-out;
-  transition: .1s ease-in-out;
+  -webkit-transition: 0.1s ease-in-out;
+  transition: 0.1s ease-in-out;
 }
 
 .contact .wrapper .form__label input:focus ~ .form__groupLabel, .contact .wrapper .form__label input:not(:placeholder-shown) ~ .form__groupLabel {
@@ -496,6 +534,17 @@ button {
   color: #999999;
 }
 
+@media (min-width: 500px) {
+  .contact {
+    background: url("../img/contact.jpg") no-repeat;
+    background-size: cover;
+    background-position-y: 50%;
+  }
+  .contact .contactBox {
+    margin: 200px 0 0 auto;
+  }
+}
+
 .footer {
   background: #171d1c;
   color: #ffffff;
@@ -503,6 +552,11 @@ button {
   text-align: right;
   padding: 30px 20px;
   line-height: 2em;
+}
+
+.footer .info {
+  max-width: 1200px;
+  margin: auto;
 }
 
 .footer .details {
@@ -517,5 +571,27 @@ button {
 .footer .address .title {
   font-size: 13px;
   font-weight: 700;
+}
+
+@-webkit-keyframes appear {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
 }
 /*# sourceMappingURL=main.css.map */
