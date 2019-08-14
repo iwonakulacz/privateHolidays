@@ -1,59 +1,4 @@
-$colors: (
-  gray: #454851,
-  dark: #171d1c,
-  red: #f31131
-);
-$marginBottom: 20px;
-
-@function color($color-name) {
-  @return map-get($colors, $color-name);
-}
-@mixin bigWrapper {
-  padding: 20px;
-}
-
-@mixin smallWrapper {
-}
-
-@mixin title {
-  font-size: 24px;
-  color: color(dark);
-  text-align: center;
-  width: 100%;
-  margin-bottom: 50px;
-  position: relative;
-}
-
-@mixin button--red {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  border-radius: 15px;
-  font-size: 12px;
-  background: color(red);
-  padding: 8px 20px;
-  color: #ffffff;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-@mixin respond($breakpoint) {
-  @if ($breakpoint == "tablet") {
-    @media only screen and (min-width: 991px) {
-      @content;
-    }
-  }
-  @if ($breakpoint == "smallTablet") {
-    @media only screen and (min-width: 600px) {
-      @content;
-    }
-  }
-  @if ($breakpoint == "laptop") {
-    @media only screen and (min-width: 1100px) {
-      @content;
-    }
-  }
-}
+@import "./config";
 
 *,
 *::before,
@@ -77,22 +22,25 @@ button {
   cursor: pointer;
 }
 
-// navigation
+.title {
+  @include title();
+}
+
 .nav {
   background: #ffffff;
   position: fixed;
   width: 100%;
   z-index: 2;
   box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
-  .wrapper{
-      max-width: 1200px;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin: auto;
+  &-wrapper {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: auto;
   }
-  .mobileLogo {
+  &__logo {
     font-family: "Merienda", cursive;
     text-decoration: none;
     padding: 15px;
@@ -100,11 +48,11 @@ button {
     color: color(dark);
     font-size: 20px;
     font-weight: bold;
-    @include respond(tablet){
-        padding-left: 0;
+    @include mQ(1220px) {
+      padding-left: 0;
     }
   }
-  .hamburger {
+  &__hamburger {
     background: transparent;
     width: 22px;
     height: 16px;
@@ -142,43 +90,42 @@ button {
         transform: translate3d(0, -7px, 0) rotate(-45deg);
       }
     }
-    @include respond(tablet) {
+    @include mQ(991px) {
       display: none;
     }
   }
-  .nav__list {
+  &__list {
     width: 100%;
     padding: 5px 0;
     text-align: center;
     display: none;
+    @include mQ(991px) {
+      display: flex;
+      width: auto;
+      align-items: center;
+    }
     &.active {
       display: block;
-      animation: appear 0.5s ease;
     }
-    .item {
+    .list__item {
       text-transform: uppercase;
       list-style: none;
       border-bottom: 1px dotted #10101029;
       margin: 0 15px;
       padding: 10px;
+      @include mQ(991px) {
+        border: none;
+      }
       &:last-child {
         border: none;
+        @include mQ(1220px) {
+          margin-right: 0;
+          padding-right: 0;
+        }
       }
       a {
         text-decoration: none;
         color: color(gray);
-      }
-    }
-    @include respond(tablet) {
-      display: flex;
-      width: auto;
-      align-items: center;
-      .item{
-          border: none;
-          &:last-child{
-              margin-right: 0;
-              padding-right: 0;
-          }
       }
     }
   }
@@ -193,7 +140,7 @@ button {
   background-position-x: 50%;
   background-size: cover;
   padding-top: 60px;
-  .title {
+  &__title {
     font-size: 56px;
     color: #ffffff;
     text-align: center;
@@ -203,11 +150,8 @@ button {
 }
 
 .ideas {
-  @include bigWrapper();
+  padding: 20px;
   margin-top: 40px;
-  .title {
-    @include title();
-  }
   .boxes {
     display: flex;
     flex-direction: row;
@@ -254,11 +198,9 @@ button {
     }
   }
 }
+
 .locations {
-  @include bigWrapper();
-  .title {
-    @include title();
-  }
+  padding: 20px;
   .boxes {
     display: grid;
     grid-template-columns: 1fr;
@@ -266,10 +208,11 @@ button {
     row-gap: 40px;
     margin-bottom: 60px;
     margin: auto;
-    @include respond(laptop) {
+    @include mQ(1100px) {
       grid-template-columns: 1fr 1fr;
     }
     .box {
+      counter-reset: locationImage;
       margin: 0 auto;
       background: #ffffff;
       border-radius: 7px;
@@ -277,15 +220,16 @@ button {
       position: relative;
       display: grid;
       grid-template-columns: 1fr;
-      @include respond(smallTablet) {
+      @include mQ(600px) {
         grid-template-columns: 1fr 1fr;
         max-width: 560px;
       }
       .img {
-        background: url("../img/p2.jpg") no-repeat;
+        counter-increment: locationImage;
+        background: url('../img/p2.jpg') no-repeat;
         background-size: cover;
         height: 200px;
-        @include respond(smallTablet) {
+        @include mQ(600px) {
           height: 100%;
           border-top-left-radius: 7px;
           border-bottom-left-radius: 7px;
@@ -321,14 +265,12 @@ button {
     }
   }
 }
+
 .reasons {
-  @include bigWrapper();
+  padding: 20px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  .title {
-    @include title();
-  }
   .item {
     text-align: center;
     margin: 0 10px $marginBottom * 3 10px;
@@ -381,18 +323,25 @@ button {
 }
 
 .contact {
+  @include mQ(500px) {
+    background: url("../img/contact.jpg") no-repeat;
+    background-size: cover;
+    background-position-y: 50%;
+  }
   .wrapper {
     display: flex;
     margin: auto;
     max-width: 1200px;
-    .title {
-      @include title();
-    }
     .contactBox {
       padding: 60px 30px;
       width: 100%;
       max-width: 500px;
       background: #ffffff;
+      @include mQ(500px) {
+        & {
+          margin: 200px 0 0 auto;
+        }
+      }
     }
     .button--red {
       @include button--red();
@@ -436,14 +385,6 @@ button {
       }
     }
   }
-  @media (min-width: 500px) {
-    background: url("../img/contact.jpg") no-repeat;
-    background-size: cover;
-    background-position-y: 50%;
-    .contactBox {
-      margin: 200px 0 0 auto;
-    }
-  }
 }
 
 .footer {
@@ -453,9 +394,9 @@ button {
   text-align: right;
   padding: 30px 20px;
   line-height: 2em;
-  .info{
-      max-width: 1200px;
-      margin: auto;
+  .info {
+    max-width: 1200px;
+    margin: auto;
   }
   .details {
     list-style: none;
@@ -467,14 +408,5 @@ button {
       font-size: 13px;
       font-weight: 700;
     }
-  }
-}
-
-@keyframes appear {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
   }
 }
