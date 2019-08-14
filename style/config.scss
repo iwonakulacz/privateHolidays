@@ -1,0 +1,39 @@
+$colors: (
+  gray: #454851,
+  dark: #171d1c,
+  red: #f31131
+);
+
+$marginBottom: 20px;
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@mixin title {
+  font-size: 24px;
+  color: color(dark);
+  text-align: center;
+  width: 100%;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+@mixin button--red {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  border-radius: 15px;
+  font-size: 12px;
+  background: color(red);
+  padding: 8px 20px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@mixin mQ($arr) {
+  @media only screen and (min-width: $arr) {
+    @content;
+  }
+}

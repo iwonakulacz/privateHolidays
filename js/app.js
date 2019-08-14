@@ -1,16 +1,16 @@
-const hamburger = document.querySelector('.hamburger');
+const hamburger = document.querySelector('.nav__hamburger');
 
 function toggleMenu(e){
     const show = hamburger.getAttribute('aria-expanded');
     if(show === 'true'){
         hamburger.setAttribute('aria-expanded', false);
         $('.nav__list').removeClass('active');
-        $('.hamburger').removeClass('active');
+        $('.nav__hamburger').removeClass('active');
     }
     else{
         hamburger.setAttribute('aria-expanded', true);
         $('.nav__list').addClass('active');
-        $('.hamburger').addClass('active');
+        $('.nav__hamburger').addClass('active');
     }
 }
 
