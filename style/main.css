@@ -1,3 +1,90 @@
+@charset "UTF-8";
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+}
+
+/* Positioning and visibility settings of the tooltip */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  left: 50%;
+  bottom: calc(100% + 5px);
+  pointer-events: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  will-change: transform;
+}
+
+/* The actual tooltip with a dynamic width */
+[data-tooltip]:before {
+  content: attr(data-tooltip);
+  padding: 10px 18px;
+  min-width: 50px;
+  max-width: 300px;
+  width: -webkit-max-content;
+  width: max-content;
+  width: -moz-max-content;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: rgba(37, 38, 39, 0.9);
+  background-image: linear-gradient(30deg, rgba(59, 72, 80, 0.44), rgba(59, 68, 75, 0.44), rgba(60, 82, 88, 0.44));
+  -webkit-box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  white-space: pre-wrap;
+  -webkit-transform: translate(-50%, -5px) scale(0.5);
+          transform: translate(-50%, -5px) scale(0.5);
+}
+
+/* Tooltip arrow */
+[data-tooltip]:after {
+  content: "";
+  border-style: solid;
+  border-width: 5px 5px 0px 5px;
+  border-color: rgba(37, 38, 39, 0.9) transparent transparent transparent;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+  /* If the mouse leaves the element, 
+                              the transition effects for the 
+                              tooltip arrow are "turned off" */
+  -webkit-transform-origin: top;
+          transform-origin: top;
+  /* Orientation setting for the
+                              slide-down effect */
+  -webkit-transform: translateX(-50%) scaleY(0);
+          transform: translateX(-50%) scaleY(0);
+}
+
+/* Tooltip becomes visible at hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Scales from 0.5 to 1 -> grow effect */
+[data-tooltip]:hover:before {
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+  -webkit-transform: translate(-50%, -5px) scale(1);
+          transform: translate(-50%, -5px) scale(1);
+}
+
+/* Slide down effect only on mouseenter (NOT on mouseleave) */
+[data-tooltip]:hover:after {
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
+  /* Starting after the grow effect */
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transform: translateX(-50%) scaleY(1);
+          transform: translateX(-50%) scaleY(1);
+}
+
 *,
 *::before,
 *::after {
@@ -26,15 +113,28 @@ button {
   color: #171d1c;
   text-align: center;
   width: 100%;
-  margin-bottom: 50px;
+  margin: 50px 0;
   position: relative;
 }
 
+.title::after {
+  position: absolute;
+  top: -130%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  content: "♦ ♦ ♦";
+  color: #34d08a;
+  display: block;
+}
+
 .nav {
+  -webkit-animation: slideDown 0.7s ease-in-out;
+          animation: slideDown 0.7s ease-in-out;
   background: #ffffff;
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   -webkit-box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
           box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
 }
@@ -66,9 +166,9 @@ button {
   font-weight: bold;
 }
 
-@media only screen and (min-width: 1220px) {
+@media only screen and (min-width: 991px) {
   .nav__logo {
-    padding-left: 0;
+    display: none;
   }
 }
 
@@ -142,10 +242,14 @@ button {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    width: auto;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    padding: 0;
   }
 }
 
@@ -159,12 +263,53 @@ button {
   border-bottom: 1px dotted #10101029;
   margin: 0 15px;
   padding: 10px;
+  position: relative;
+  font-weight: 500;
 }
 
 @media only screen and (min-width: 991px) {
   .nav__list .list__item {
     border: none;
   }
+  .nav__list .list__item::after, .nav__list .list__item::before {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    content: "";
+    height: 1px;
+    background: rgba(55, 213, 143, 0.55);
+    width: 0%;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+    opacity: 0;
+  }
+  .nav__list .list__item:hover::after {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 1;
+    width: 50%;
+  }
+  .nav__list .list__item:hover::before {
+    opacity: 1;
+    width: 50%;
+  }
+}
+
+.nav__list .list__item--big {
+  display: none;
+}
+
+@media only screen and (min-width: 991px) {
+  .nav__list .list__item--big {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: "Merienda", cursive;
+  }
+}
+
+.nav__list .list__item--big::after, .nav__list .list__item--big::before {
+  display: none;
 }
 
 .nav__list .list__item:last-child {
@@ -174,7 +319,6 @@ button {
 @media only screen and (min-width: 1220px) {
   .nav__list .list__item:last-child {
     margin-right: 0;
-    padding-right: 0;
   }
 }
 
@@ -191,11 +335,14 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: 120vh;
   background: url("../img/boat.jpg") no-repeat;
+  background-attachment: fixed;
   background-position-x: 50%;
   background-size: cover;
   padding-top: 60px;
+  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 90%);
+          clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 90%);
 }
 
 .header__title {
@@ -204,6 +351,8 @@ button {
   text-align: center;
   padding: 0 20px;
   width: 100%;
+  text-shadow: 1px 1px 2px #b7b7b7;
+  text-transform: uppercase;
 }
 
 .ideas {
@@ -237,6 +386,8 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
 .ideas .boxes .box .text {
@@ -260,6 +411,39 @@ button {
   top: 0;
   left: 0;
   display: block;
+}
+
+.ideas .boxes .box .description {
+  opacity: 0;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  background: #34d08a;
+  margin: 20px;
+  padding: 20px;
+  height: calc(100% - 40px);
+  color: #ffffff;
+}
+
+.ideas .boxes .box .description span {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ideas .boxes .box:hover .description {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 
 .ideas .boxes .box1 {
@@ -375,6 +559,13 @@ button {
   left: 20px;
 }
 
+.locations .boxes .box .content .button--red:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
+}
+
 .reasons {
   padding: 20px;
   display: -webkit-box;
@@ -445,6 +636,7 @@ button {
     background: url("../img/contact.jpg") no-repeat;
     background-size: cover;
     background-position-y: 50%;
+    background-attachment: fixed;
   }
 }
 
@@ -482,6 +674,13 @@ button {
   text-transform: uppercase;
   display: block;
   margin: 15px auto;
+}
+
+.contact .wrapper .button--red:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: .15s ease-in-out;
+  transition: .15s ease-in-out;
 }
 
 .contact .wrapper .form__label {
@@ -550,8 +749,34 @@ button {
   list-style: none;
 }
 
-.footer .address .title {
+.footer__title {
   font-size: 13px;
   font-weight: 700;
+}
+
+@-webkit-keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=main.css.map */

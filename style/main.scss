@@ -24,13 +24,23 @@ button {
 
 .title {
   @include title();
+  &::after {
+    position: absolute;
+    top: -130%;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "♦ ♦ ♦";
+    color: rgb(52, 208, 138);
+    display: block;
+  }
 }
 
 .nav {
+  animation: slideDown 0.7s ease-in-out;
   background: #ffffff;
   position: fixed;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   box-shadow: 0 0 2px 2px rgba(69, 72, 81, 0.12);
   &-wrapper {
     max-width: 1200px;
@@ -48,8 +58,8 @@ button {
     color: color(dark);
     font-size: 20px;
     font-weight: bold;
-    @include mQ(1220px) {
-      padding-left: 0;
+    @include mQ(991px) {
+      display: none;
     }
   }
   &__hamburger {
@@ -101,9 +111,12 @@ button {
     display: none;
     @include mQ(991px) {
       display: flex;
-      width: auto;
+      width: 100%;
+      justify-content: space-between;
       align-items: center;
+      padding: 0;
     }
+
     &.active {
       display: block;
     }
@@ -113,14 +126,49 @@ button {
       border-bottom: 1px dotted #10101029;
       margin: 0 15px;
       padding: 10px;
+      position: relative;
+      font-weight: 500;
       @include mQ(991px) {
         border: none;
+        &::after,
+        &::before {
+          position: absolute;
+          bottom: 5px;
+          left: 50%;
+          content: "";
+          height: 1px;
+          background: rgba(55, 213, 143, 0.55);
+          width: 0%;
+          transition: 0.2s all;
+          opacity: 0;
+        }
+        &:hover::after {
+          transform: translateX(-100%);
+          opacity: 1;
+          width: 50%;
+        }
+        &:hover::before {
+          opacity: 1;
+          width: 50%;
+        }
+      }
+      &--big {
+        display: none;
+        @include mQ(991px) {
+          display: block;
+          font-size: 24px;
+          font-weight: 700;
+          font-family: "Merienda", cursive;
+        }
+        &::after,
+        &::before {
+          display: none;
+        }
       }
       &:last-child {
         border: none;
         @include mQ(1220px) {
           margin-right: 0;
-          padding-right: 0;
         }
       }
       a {
@@ -135,17 +183,21 @@ button {
   width: 100%;
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: 120vh;
   background: url("../img/boat.jpg") no-repeat;
+  background-attachment: fixed;
   background-position-x: 50%;
   background-size: cover;
   padding-top: 60px;
+  clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 90%);
   &__title {
     font-size: 56px;
     color: #ffffff;
     text-align: center;
     padding: 0 20px;
     width: 100%;
+    text-shadow: 1px 1px 2px #b7b7b7;
+    text-transform: uppercase;
   }
 }
 
@@ -164,6 +216,8 @@ button {
       max-width: 340px;
       margin: 0 10px $marginBottom 10px;
       display: flex;
+      position: relative;
+      overflow: hidden;
       .text {
         margin: auto 20px 20px 20px;
         text-align: center;
@@ -184,6 +238,29 @@ button {
           left: 0;
           display: block;
         }
+      }
+      .description {
+        opacity: 0;
+        transform: translateY(100%);
+        transition: 0.4s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: center;
+        background: #34d08a;
+        margin: 20px;
+        padding: 20px;
+        height: calc(100% - 40px);
+        color: #ffffff;
+        span {
+          align-items: center;
+          height: 100%;
+          display: flex;
+        }
+      }
+      &:hover .description {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     .box1 {
@@ -226,7 +303,7 @@ button {
       }
       .img {
         counter-increment: locationImage;
-        background: url('../img/p2.jpg') no-repeat;
+        background: url("../img/p2.jpg") no-repeat;
         background-size: cover;
         height: 200px;
         @include mQ(600px) {
@@ -260,6 +337,10 @@ button {
           position: absolute;
           bottom: 20px;
           left: 20px;
+          &:hover{
+            transform: scale(1.03);
+            transition: .15s ease-in-out;
+          }
         }
       }
     }
@@ -327,6 +408,7 @@ button {
     background: url("../img/contact.jpg") no-repeat;
     background-size: cover;
     background-position-y: 50%;
+    background-attachment: fixed;
   }
   .wrapper {
     display: flex;
@@ -347,6 +429,10 @@ button {
       @include button--red();
       display: block;
       margin: 15px auto;
+      &:hover{
+        transform: scale(1.03);
+        transition: .15s ease-in-out;
+      }
     }
     .form__label {
       position: relative;
@@ -404,9 +490,24 @@ button {
   }
   .address {
     list-style: none;
-    .title {
-      font-size: 13px;
-      font-weight: 700;
-    }
+  }
+  &__title {
+    font-size: 13px;
+    font-weight: 700;
   }
 }
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
