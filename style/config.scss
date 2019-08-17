@@ -51,7 +51,7 @@ $marginBottom: 20px;
   left: 50%;
   bottom: calc(100% + 5px);
   pointer-events: none;
-  transition: 0.2s;
+  transition: 0.1s;
   will-change: transform;
 }
 
@@ -101,12 +101,12 @@ $marginBottom: 20px;
 }
 /* Scales from 0.5 to 1 -> grow effect */
 [data-tooltip]:hover:before {
-  transition-delay: 0.3s;
+  transition-delay: 0.1s;
   transform: translate(-50%, -5px) scale(1);
 }
 /* Slide down effect only on mouseenter (NOT on mouseleave) */
 [data-tooltip]:hover:after {
-  transition-delay: 0.5s; /* Starting after the grow effect */
-  transition-duration: 0.2s;
+  transition-delay: 0.1s; /* Starting after the grow effect */
+  transition-duration: 0.1s;
   transform: translateX(-50%) scaleY(1);
 }
